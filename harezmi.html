@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Harezmi - STTAL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MEB projesi - placeholders left intentionally blank for content -->
+    <style>
+        :root{
+            --bg1:#0b1220;
+            --bg2:#07213a;
+            --accent:#7dd3fc;
+            --muted:rgba(255,255,255,0.7);
+        }
+
+        *{box-sizing:border-box}
+        body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:#eef2ff;background:linear-gradient(120deg,var(--bg1),var(--bg2));min-height:100vh}
+
+        /* animated gradient overlay */
+        .gradient-bg{
+            position:fixed;inset:0;z-index:-2;opacity:0.9;background:radial-gradient(ellipse at 10% 20%, rgba(125,211,252,0.06), transparent 10%), radial-gradient(ellipse at 90% 80%, rgba(139,92,246,0.06), transparent 12%);
+            animation:moveBG 12s linear infinite;
+        }
+        @keyframes moveBG{0%{transform:translateY(0)}50%{transform:translateY(20px)}100%{transform:translateY(0)}}
+
+        /* subtle floating blobs */
+        .blob{position:fixed;border-radius:50%;filter:blur(30px);opacity:0.12;z-index:-3}
+        .blob.a{width:420px;height:420px;background:#7dd3fc;left:-80px;top:-60px;animation:floatA 8s ease-in-out infinite}
+        .blob.b{width:300px;height:300px;background:#8b5cf6;right:-60px;bottom:-80px;animation:floatB 10s ease-in-out infinite}
+        @keyframes floatA{0%{transform:translateY(0)}50%{transform:translateY(30px)}100%{transform:translateY(0)}}
+        @keyframes floatB{0%{transform:translateY(0)}50%{transform:translateY(-30px)}100%{transform:translateY(0)}}
+
+        header{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:5rem 1.5rem;text-align:center}
+        .hero{max-width:1100px}
+        .eyebrow{color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-size:13px;margin-bottom:1rem}
+        h1{font-size:clamp(28px,4vw,56px);margin:0 0 1rem;line-height:1.05;text-shadow:0 6px 24px rgba(125,211,252,0.06)}
+        .slogan{font-weight:600;color:#ffffff;font-size:clamp(18px,2.2vw,24px);max-width:900px;margin:0 auto}
+
+        /* typewriter effect */
+        .typewriter{display:inline-block;border-right:2px solid rgba(255,255,255,0.12);padding-right:4px}
+
+        main{padding:3rem 1.5rem}
+        .cards{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+        .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:1.25rem;min-height:220px;border:1px solid rgba(255,255,255,0.03)}
+        .card h3{margin:0 0 .75rem;color:var(--muted)}
+        .img-slot{height:140px;border-radius:8px;background:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 6px, transparent 6px 12px);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);}
+        .desc{height:64px;margin-top:12px;background:transparent;border-radius:6px}
+
+        footer{margin-top:2.5rem;padding:2rem 1rem;text-align:center;color:rgba(255,255,255,0.7);font-size:14px;border-top:1px solid rgba(255,255,255,0.02)}
+
+        @media (max-width:640px){header{padding:3rem 1rem}.hero{padding:0 0}}
+    </style>
+    <script>
+        // small helper: type the slogan
+        document.addEventListener('DOMContentLoaded',()=>{
+            const text = 'okulumuzda yankılanan her bir ses, geleceğe atılan güçlü bir nefes';
+            const el = document.getElementById('sloganText');
+            let i=0;
+            function step(){
+                el.textContent = text.slice(0,i);
+                i++;
+                if(i<=text.length) setTimeout(step, 28);
+                else el.classList.remove('typewriter');
+            }
+            // small delay to let user see heading
+            setTimeout(step, 600);
+        });
+    </script>
+</head>
+<body>
+
+    <div class="gradient-bg" aria-hidden="true"></div>
+    <div class="blob a" aria-hidden="true"></div>
+    <div class="blob b" aria-hidden="true"></div>
+
+    <header>
+        <div class="hero">
+            <div class="eyebrow">Harezmi Eğitim Modeli — MEB Projesi</div>
+            <h1>Okulumuza, geleceğe not düşen bir nefes</h1>
+            <p class="slogan"><span id="sloganText" class="typewriter" aria-live="polite"></span></p>
+        </div>
+    </header>
+
+    <main>
+        <section class="cards" aria-label="İçerik alanları">
+            <article class="card">
+                <h3>Proje Tanıtımı</h3>
+                <!-- Görsel alanı: buraya resim eklenecek (boş bırakıldı) -->
+                <div class="img-slot" role="img" aria-label="Proje görseli (yer tutucu)">Görsel alanı (boş)</div>
+                <!-- Açıklama alanı: boş bırakıldı per isteğe göre doldurulacak -->
+                <div class="desc" aria-hidden="true"></div>
+            </article>
+
+            <article class="card">
+                <h3>Çalışmalar</h3>
+                <div class="img-slot" role="img" aria-label="Çalışma görseli (yer tutucu)">Görsel alanı (boş)</div>
+                <div class="desc" aria-hidden="true"></div>
+            </article>
+
+            <article class="card">
+                <h3>Etkinlikler</h3>
+                <div class="img-slot" role="img" aria-label="Etkinlik görseli (yer tutucu)">Görsel alanı (boş)</div>
+                <div class="desc" aria-hidden="true"></div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div>© 2026 Cinar Savas</div>
+        <div style="margin-top:6px;font-size:12px;opacity:0.8">MEB projesi - içerikler daha sonra eklenecektir</div>
+    </footer>
+
+</body>
+</html>
