@@ -1,0 +1,5 @@
+# Ignore generated/large assets if any
+/Users/cinarsavas/Desktop/untitled folder/assets/*.psd
+/Users/cinarsavas/Desktop/untitled folder/assets/*.tmp
+.DS_Store
+node_modules/

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <title>İletişim — Harezmi</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        :root{--accent-red:#c8102e;--muted:#324b63}
+        body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f6f8fb;color:#102030}
+        .masthead{height:64px;background:#fff;border-bottom:4px solid var(--accent-red);display:flex;align-items:center;justify-content:space-between;padding:8px 20px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo-small{height:44px}
+        nav a{margin-left:16px;color:#0b2338;text-decoration:none}
+        main{max-width:700px;margin:36px auto;padding:24px}
+        form{display:grid;gap:12px}
+        input,textarea{padding:10px;border-radius:6px;border:1px solid rgba(0,0,0,0.08);font-size:15px}
+        button{background:var(--accent-red);color:#fff;border:none;padding:10px 14px;border-radius:6px;cursor:pointer}
+        footer{margin-top:40px;padding:18px;text-align:center;color:#6b7b8c;background:transparent}
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="brand">
+            <img src="assets/harezmi-logo.png" alt="Harezmi logosu" class="logo-small">
+            <div>
+                <div style="font-weight:700">Türk Telekom Şehit Murat Naiboğlu Anadolu Lisesi</div>
+                <div style="font-size:12px;color:#6b7b8c">Harezmi Eğitim Modeli - STTAL</div>
+            </div>
+        </div>
+        <nav aria-label="Ana navigasyon">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="calismalar.html">Çalışmalar</a>
+            <a href="iletisim.html">İletişim</a>
+        </nav>
+    </div>
+
+    <main>
+        <h1>İletişim</h1>
+        <p style="color:var(--muted)">İletişim bilgilerini veya formu buraya ekleyebilirsiniz. (MEB projesi için yer tutucu)</p>
+        <form action="#" onsubmit="event.preventDefault(); alert('Form gönderimi burada aktif değil — placeholder.');">
+            <input type="text" name="isim" placeholder="İsim" />
+            <input type="email" name="email" placeholder="E-posta" />
+            <textarea name="mesaj" rows="6" placeholder="Mesajınız"></textarea>
+            <button type="submit">Gönder</button>
+        </form>
+
+        <section style="margin-top:18px">
+            <h3>Okul Adresi</h3>
+            <p>Türk Telekom Şehit Murat Naiboğlu Anadolu Lisesi — Sultanbeyli</p>
+            <h3>Telefon</h3>
+            <p>(xxx) xxx xx xx</p>
+        </section>
+    </main>
+
+    <footer>
+        Türk Telekom Şehit Murat Naiboğlu Anadolu Lisesi — Sultanbeyli • © 2026 Çınar Savaş
+    </footer>
+</body>
+</html>

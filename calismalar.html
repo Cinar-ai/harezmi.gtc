@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <title>Çalışmalar — Harezmi</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        :root{--accent-red:#c8102e;--muted:#324b63}
+        body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f6f8fb;color:#102030}
+        .masthead{height:64px;background:#fff;border-bottom:4px solid var(--accent-red);display:flex;align-items:center;justify-content:space-between;padding:8px 20px}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo-small{height:44px}
+        nav a{margin-left:16px;color:#0b2338;text-decoration:none}
+        main{max-width:1100px;margin:36px auto;padding:24px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+        .thumb{background:#fff;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);height:160px;display:flex;align-items:center;justify-content:center}
+        .thumb img{width:100%;height:100%;object-fit:cover}
+        .placeholder{height:120px;border-radius:8px;border:2px dashed rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,0.4)}
+        footer{margin-top:40px;padding:18px;text-align:center;color:#6b7b8c;background:transparent}
+        /* lightbox styles */
+        .lb-overlay{position:fixed;inset:0;background:rgba(2,4,20,0.75);display:none;align-items:center;justify-content:center;z-index:9999}
+        .lb-overlay.open{display:flex}
+        .lb{max-width:92vw;max-height:92vh;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.7);background:#000;padding:12px;display:flex;flex-direction:column;align-items:center}
+        .lb img{max-width:100%;max-height:80vh;border-radius:6px}
+        .lb-close{position:absolute;right:18px;top:18px;background:rgba(255,255,255,0.06);border-radius:999px;padding:6px 10px;color:#fff;font-weight:700;cursor:pointer}
+        .lb-nav{position:absolute;left:12px;right:12px;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
+        .lb-nav button{pointer-events:auto;background:transparent;border:0;color:#fff;font-size:32px;padding:8px 12px;cursor:pointer}
+        .lb-caption{color:#fff;margin-top:10px;font-size:15px;opacity:0.95}
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="brand">
+            <img src="assets/harezmi-logo.png" alt="Harezmi logosu" class="logo-small">
+            <div>
+                <div style="font-weight:700">Türk Telekom Şehit Murat Naiboğlu Anadolu Lisesi</div>
+                <div style="font-size:12px;color:#6b7b8c">Harezmi Eğitim Modeli - STTAL</div>
+            </div>
+        </div>
+        <nav aria-label="Ana navigasyon">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="calismalar.html">Çalışmalar</a>
+            <a href="iletisim.html">İletişim</a>
+        </nav>
+    </div>
+
+    <main>
+        <h1>Çalışmalar</h1>
+        <p style="color:var(--muted)">Aşağıda projeye ait fotoğraflar yer alır. Üzerine tıklayarak büyük hâlini yeni sekmede açabilirsiniz.</p>
+        <section class="grid">
+            <div class="thumb"><a href="assets/07d0ea5c-fddf-4ae8-9342-0fe499165918.jpg" target="_blank"><img src="assets/07d0ea5c-fddf-4ae8-9342-0fe499165918.jpg" alt=""></a></div>
+            <div class="thumb"><a href="assets/3b400161-b71a-41f0-a5e8-841c79acf266.jpg" target="_blank"><img src="assets/3b400161-b71a-41f0-a5e8-841c79acf266.jpg" alt=""></a></div>
+            <div class="thumb"><a href="assets/48e7511b-eaaa-4ae4-8c23-1be13d23339d.jpg" target="_blank"><img src="assets/48e7511b-eaaa-4ae4-8c23-1be13d23339d.jpg" alt=""></a></div>
+            <div class="thumb"><a href="assets/57a2b8e2-7803-472b-a81a-03321c007fc0.jpg" target="_blank"><img src="assets/57a2b8e2-7803-472b-a81a-03321c007fc0.jpg" alt=""></a></div>
+            <div class="thumb"><a href="assets/91ed863d-f52b-43c2-92ab-8ba7d6555075.jpg" target="_blank"><img src="assets/91ed863d-f52b-43c2-92ab-8ba7d6555075.jpg" alt=""></a></div>
+            <div class="thumb"><a href="assets/a49b9f47-2e1c-4f54-8c5b-1a5ce39e0119.jpg" target="_blank"><img src="assets/a49b9f47-2e1c-4f54-8c5b-1a5ce39e0119.jpg" alt=""></a></div>
+            <div class="thumb"><a href="assets/a4c32159-5581-4720-bd63-2f5388314c76.jpg" target="_blank"><img src="assets/a4c32159-5581-4720-bd63-2f5388314c76.jpg" alt=""></a></div>
+        </section>
+
+    </main>
+
+    <!-- lightbox overlay -->
+    <div class="lb-overlay" role="dialog" aria-hidden="true">
+        <div class="lb">
+            <button class="lb-close" aria-label="Kapat">✕</button>
+            <div class="lb-nav">
+                <button class="lb-prev" aria-label="Önceki">‹</button>
+                <button class="lb-next" aria-label="Sonraki">›</button>
+            </div>
+            <div class="lb-meta" aria-hidden="true">1 / 1</div>
+            <img src="" alt="" />
+            <div class="lb-caption" role="status" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <script>
+        // lightbox for calismalar page
+        (function(){
+            const thumbs = Array.from(document.querySelectorAll('.grid img'));
+            if(!thumbs.length) return;
+            const items = thumbs.map(t=>t.getAttribute('src'));
+            const captions = thumbs.map(t=>t.getAttribute('alt')||'');
+            const overlay = document.querySelector('.lb-overlay');
+            const imgEl = overlay.querySelector('img');
+            const capEl = overlay.querySelector('.lb-caption');
+            const meta = overlay.querySelector('.lb-meta');
+            function open(i){
+                overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+                overlay.dataset.index = i; imgEl.src = items[i]; imgEl.alt = captions[i] || '';
+                if(capEl) capEl.textContent = captions[i] || '';
+                if(meta) meta.textContent = (i+1) + ' / ' + items.length;
+            }
+            function close(){ overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); }
+            thumbs.forEach((t,i)=> t.addEventListener('click', (e)=>{ e.preventDefault(); open(i); }));
+            overlay.addEventListener('click', (e)=>{ if(e.target.classList.contains('lb-overlay')||e.target.classList.contains('lb-close')) close(); });
+            const prev = overlay.querySelector('.lb-prev'); const next = overlay.querySelector('.lb-next');
+            prev && prev.addEventListener('click', (e)=>{ e.stopPropagation(); let idx = Number(overlay.dataset.index)||0; idx=(idx-1+items.length)%items.length; open(idx); });
+            next && next.addEventListener('click', (e)=>{ e.stopPropagation(); let idx = Number(overlay.dataset.index)||0; idx=(idx+1)%items.length; open(idx); });
+            document.addEventListener('keydown', (e)=>{
+                if(overlay.classList.contains('open')){
+                    if(e.key==='Escape') close();
+                    if(e.key==='ArrowRight'){ let idx=Number(overlay.dataset.index)||0; idx=(idx+1)%items.length; open(idx);} 
+                    if(e.key==='ArrowLeft'){ let idx=Number(overlay.dataset.index)||0; idx=(idx-1+items.length)%items.length; open(idx);} 
+                }
+            });
+        })();
+    </script>
+
+    <footer>
+        Türk Telekom Şehit Murat Naiboğlu Anadolu Lisesi — Sultanbeyli • © 2026 Çınar Savaş
+    </footer>
+</body>
+</html>

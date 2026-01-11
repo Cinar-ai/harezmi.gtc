@@ -7,10 +7,13 @@
     <!-- MEB projesi - placeholders left intentionally blank for content -->
     <style>
         :root{
-            --bg1:#0b1220;
-            --bg2:#07213a;
-            --accent:#7dd3fc;
-            --muted:rgba(255,255,255,0.7);
+            /* brand colors tuned to the Harezmi logo */
+            --bg1:#071021;
+            --bg2:#0b1530;
+            --accent-red:#c8102e; /* logo red */
+            --accent-gold:#c9a76a; /* logo gold */
+            --muted:rgba(255,255,255,0.78);
+            --glass: rgba(255,255,255,0.03);
         }
 
         *{box-sizing:border-box}
@@ -25,49 +28,164 @@
 
         /* subtle floating blobs */
         .blob{position:fixed;border-radius:50%;filter:blur(30px);opacity:0.12;z-index:-3}
-        .blob.a{width:420px;height:420px;background:#7dd3fc;left:-80px;top:-60px;animation:floatA 8s ease-in-out infinite}
-        .blob.b{width:300px;height:300px;background:#8b5cf6;right:-60px;bottom:-80px;animation:floatB 10s ease-in-out infinite}
+    .blob.a{width:420px;height:420px;background:var(--accent-red);left:-80px;top:-60px;animation:floatA 8s ease-in-out infinite;mix-blend-mode:screen}
+    .blob.b{width:300px;height:300px;background:var(--accent-gold);right:-60px;bottom:-80px;animation:floatB 10s ease-in-out infinite;mix-blend-mode:screen}
         @keyframes floatA{0%{transform:translateY(0)}50%{transform:translateY(30px)}100%{transform:translateY(0)}}
         @keyframes floatB{0%{transform:translateY(0)}50%{transform:translateY(-30px)}100%{transform:translateY(0)}}
 
-        header{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:5rem 1.5rem;text-align:center}
+    /* top masthead similar to MEB style */
+    .masthead{height:64px;background:#fff;border-bottom:4px solid var(--accent-red);display:flex;align-items:center;justify-content:space-between;padding:8px 20px}
+    .masthead .brand{display:flex;align-items:center;gap:12px}
+    .masthead img.logo-small{height:44px}
+    .masthead .title{font-weight:700;color:#0b2338}
+    .masthead nav a{color:#0b2338;margin-left:18px;text-decoration:none;font-size:14px}
+    .masthead nav a:hover{color:var(--accent-red)}
+    /* keep masthead in normal flow so header size doesn't jump between pages */
+    body{padding-top:0}
+
+    header{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:4.5rem 1.5rem;text-align:center}
         .hero{max-width:1100px}
         .eyebrow{color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-size:13px;margin-bottom:1rem}
+    .logo{height:78px;display:block;margin:0 auto 1rem;border-radius:10px;box-shadow:0 8px 30px rgba(200,16,46,0.12);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:6px}
+    .logo-wrap{display:flex;align-items:center;justify-content:center}
+    .logo-anim{animation:logo-pop 1.2s ease both}
+    @keyframes logo-pop{0%{transform:scale(.95);opacity:0}60%{transform:scale(1.06);opacity:1}100%{transform:scale(1)}}
         h1{font-size:clamp(28px,4vw,56px);margin:0 0 1rem;line-height:1.05;text-shadow:0 6px 24px rgba(125,211,252,0.06)}
-        .slogan{font-weight:600;color:#ffffff;font-size:clamp(18px,2.2vw,24px);max-width:900px;margin:0 auto}
-
-        /* typewriter effect */
-        .typewriter{display:inline-block;border-right:2px solid rgba(255,255,255,0.12);padding-right:4px}
+    .slogan{font-weight:600;font-size:clamp(18px,2.2vw,24px);max-width:900px;margin:0 auto}
+    /* typewriter */
+    .typewriter{display:inline-block;border-right:3px solid rgba(255,255,255,0.14);padding-right:6px;animation:blink 1s steps(1,end) infinite;}
+    @keyframes blink{50%{border-color:transparent}100%{border-color:rgba(255,255,255,0.14)}}
 
         main{padding:3rem 1.5rem}
         .cards{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
         .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:1.25rem;min-height:220px;border:1px solid rgba(255,255,255,0.03)}
         .card h3{margin:0 0 .75rem;color:var(--muted)}
-        .img-slot{height:140px;border-radius:8px;background:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 6px, transparent 6px 12px);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);}
-        .desc{height:64px;margin-top:12px;background:transparent;border-radius:6px}
+    .img-slot{height:140px;border-radius:8px;background:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 6px, transparent 6px 12px);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);}
+    .desc{height:64px;margin-top:12px;background:transparent;border-radius:6px}
+
+    /* gallery styles */
+    .gallery{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .gallery img.thumb{width:calc(50% - 4px);height:120px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:transform .22s ease,box-shadow .22s ease}
+    .gallery img.thumb:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 10px 30px rgba(0,0,0,0.4)}
+
+    @media(min-width:900px){
+        .gallery img.thumb{width:calc(33.333% - 8px);height:140px}
+    }
+
+    /* lightbox modal */
+    .lb-overlay{position:fixed;inset:0;background:rgba(2,4,20,0.75);display:none;align-items:center;justify-content:center;z-index:9999}
+    .lb-overlay.open{display:flex}
+    .lb{max-width:92vw;max-height:92vh;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.7);background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.2));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px}
+    .lb img{max-width:100%;max-height:80vh;display:block;border-radius:6px}
+    .lb-caption{color:#fff;margin-top:10px;font-size:15px;opacity:0.95}
+    .lb-meta{position:absolute;left:18px;top:18px;color:rgba(255,255,255,0.9);font-weight:700}
+    .lb-close{position:absolute;right:18px;top:18px;background:rgba(0,0,0,0.4);border-radius:999px;padding:6px 10px;color:#fff;font-weight:700;cursor:pointer}
+    .lb-nav{position:absolute;left:12px;right:12px;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
+    .lb-nav button{pointer-events:auto;background:transparent;border:0;color:#fff;font-size:32px;padding:8px 12px;cursor:pointer}
 
         footer{margin-top:2.5rem;padding:2rem 1rem;text-align:center;color:rgba(255,255,255,0.7);font-size:14px;border-top:1px solid rgba(255,255,255,0.02)}
 
         @media (max-width:640px){header{padding:3rem 1rem}.hero{padding:0 0}}
     </style>
     <script>
-        // small helper: type the slogan
+        // small helper: initialize UI interactions (typewriter + parallax)
         document.addEventListener('DOMContentLoaded',()=>{
-            const text = 'okulumuzda yankılanan her bir ses, geleceğe atılan güçlü bir nefes';
+        const slogan = 'Okulumuzda yankılanan her bir ses, geleceğe atılan güçlü bir nefes';
             const el = document.getElementById('sloganText');
-            let i=0;
-            function step(){
-                el.textContent = text.slice(0,i);
-                i++;
-                if(i<=text.length) setTimeout(step, 28);
-                else el.classList.remove('typewriter');
+            if(el){
+                let i = 0;
+                const step = ()=>{
+                    el.textContent = slogan.slice(0,i);
+                    i++;
+                    if(i<=slogan.length) setTimeout(step, 28);
+                    else el.style.borderRight = '0';
+                };
+                setTimeout(step, 400);
             }
-            // small delay to let user see heading
-            setTimeout(step, 600);
+            // simple parallax on mouse move for blobs
+            const blobA = document.querySelector('.blob.a');
+            const blobB = document.querySelector('.blob.b');
+            document.addEventListener('mousemove', (e)=>{
+                const x = (e.clientX / window.innerWidth - 0.5) * 30;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                if(blobA) blobA.style.transform = `translate(${x}px, ${y}px)`;
+                if(blobB) blobB.style.transform = `translate(${-x}px, ${-y}px)`;
+            });
         });
+
+        // lightbox handling
+        function openLightbox(index, items, captions){
+            const overlay = document.querySelector('.lb-overlay');
+            const img = overlay.querySelector('img');
+            const captionEl = overlay.querySelector('.lb-caption');
+            const meta = overlay.querySelector('.lb-meta');
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden','false');
+            overlay.dataset.index = index;
+            img.src = items[index];
+            img.alt = captions[index] || 'Büyük görüntü';
+            if(captionEl) captionEl.textContent = captions[index] || '';
+            if(meta) meta.textContent = `${index+1} / ${items.length}`;
+        }
+        function closeLightbox(){
+            const overlay = document.querySelector('.lb-overlay');
+            if(!overlay) return;
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden','true');
+        }
+        function initLightbox(){
+            const thumbs = Array.from(document.querySelectorAll('.gallery img.thumb'));
+            const items = thumbs.map(t=>t.getAttribute('src'));
+            const captions = thumbs.map(t=>t.dataset.caption || t.getAttribute('alt') || '');
+            thumbs.forEach((t,i)=>{
+                t.addEventListener('click',()=> openLightbox(i, items, captions));
+            });
+            const overlay = document.querySelector('.lb-overlay');
+            if(!overlay) return;
+            overlay.addEventListener('click',(e)=>{ if(e.target.classList.contains('lb-overlay')||e.target.classList.contains('lb-close')) closeLightbox(); });
+            // prev / next buttons
+            const btnPrev = overlay.querySelector('.lb-prev');
+            const btnNext = overlay.querySelector('.lb-next');
+            btnPrev && btnPrev.addEventListener('click', (ev)=>{ ev.stopPropagation(); let idx = Number(overlay.dataset.index)||0; idx = (idx-1+items.length)%items.length; openLightbox(idx, items, captions); });
+            btnNext && btnNext.addEventListener('click', (ev)=>{ ev.stopPropagation(); let idx = Number(overlay.dataset.index)||0; idx = (idx+1)%items.length; openLightbox(idx, items, captions); });
+            document.addEventListener('keydown',(e)=>{
+                if(e.key==='Escape') closeLightbox();
+                if(e.key==='ArrowRight'){
+                    const ol = document.querySelector('.lb-overlay');
+                    if(ol && ol.classList.contains('open')){
+                        let idx = Number(ol.dataset.index)||0; idx=(idx+1)%items.length; openLightbox(idx,items,captions);
+                    }
+                }
+                if(e.key==='ArrowLeft'){
+                    const ol = document.querySelector('.lb-overlay');
+                    if(ol && ol.classList.contains('open')){
+                        let idx = Number(ol.dataset.index)||0; idx=(idx-1+items.length)%items.length; openLightbox(idx,items,captions);
+                    }
+                }
+            });
+        }
+        // initialize after window load so images exist
+        window.addEventListener('load', initLightbox);
     </script>
 </head>
 <body>
+
+    <!-- masthead: MEB-like top bar -->
+    <div class="masthead" role="banner">
+        <div class="brand">
+            <img src="assets/harezmi-logo.png" alt="Harezmi logosu" class="logo-small">
+            <div style="display:flex;flex-direction:column;">
+                <div class="title">Türk Telekom Şehit Murat Naiboğlu Anadolu Lisesi</div>
+                <div style="font-size:12px;color:#0b2338;opacity:0.85;margin-top:2px">Harezmi Eğitim Modeli - STTAL</div>
+            </div>
+        </div>
+        <nav aria-label="Ana navigasyon">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="calismalar.html">Çalışmalar</a>
+            <a href="iletisim.html">İletişim</a>
+        </nav>
+    </div>
 
     <div class="gradient-bg" aria-hidden="true"></div>
     <div class="blob a" aria-hidden="true"></div>
@@ -75,38 +193,46 @@
 
     <header>
         <div class="hero">
-            <div class="eyebrow">Harezmi Eğitim Modeli — MEB Projesi</div>
-            <h1>Okulumuza, geleceğe not düşen bir nefes</h1>
-            <p class="slogan"><span id="sloganText" class="typewriter" aria-live="polite"></span></p>
+            <div class="eyebrow" style="color:var(--accent-gold)">Türk Telekom Şehit Murat Naiboğlu Anadolu Lisesi — Harezmi Eğitim Modeli</div>
+            <h1 style="color:var(--accent-gold)"><span id="sloganText" class="typewriter" aria-live="polite"></span></h1>
         </div>
     </header>
 
     <main>
         <section class="cards" aria-label="İçerik alanları">
             <article class="card">
-                <h3>Proje Tanıtımı</h3>
-                <!-- Görsel alanı: buraya resim eklenecek (boş bırakıldı) -->
-                <div class="img-slot" role="img" aria-label="Proje görseli (yer tutucu)">Görsel alanı (boş)</div>
-                <!-- Açıklama alanı: boş bırakıldı per isteğe göre doldurulacak -->
-                <div class="desc" aria-hidden="true"></div>
-            </article>
-
-            <article class="card">
-                <h3>Çalışmalar</h3>
-                <div class="img-slot" role="img" aria-label="Çalışma görseli (yer tutucu)">Görsel alanı (boş)</div>
-                <div class="desc" aria-hidden="true"></div>
-            </article>
-
-            <article class="card">
-                <h3>Etkinlikler</h3>
-                <div class="img-slot" role="img" aria-label="Etkinlik görseli (yer tutucu)">Görsel alanı (boş)</div>
+                <h3>Çalışmalar & Etkinlikler</h3>
+                <p style="color:var(--muted);">Aşağıdaki fotoğraflar öğrencilerimizin yürüttüğü çalışmalar ve katıldıkları etkinliklerden seçilmiştir. Üzerine tıklayarak büyük hallerini görebilirsiniz.</p>
+                <div class="gallery" aria-hidden="false">
+                    <img class="thumb" src="assets/07d0ea5c-fddf-4ae8-9342-0fe499165918.jpg" alt="Çalışma 1" data-caption="Sınıf içi tartışma çalışması">
+                    <img class="thumb" src="assets/3b400161-b71a-41f0-a5e8-841c79acf266.jpg" alt="Çalışma 2" data-caption="Atölye çalışmasından kare">
+                    <img class="thumb" src="assets/48e7511b-eaaa-4ae4-8c23-1be13d23339d.jpg" alt="Çalışma 3" data-caption="Proje sunumundan görüntü">
+                    <img class="thumb" src="assets/57a2b8e2-7803-472b-a81a-03321c007fc0.jpg" alt="Çalışma 4" data-caption="Takım çalışması anı">
+                    <img class="thumb" src="assets/91ed863d-f52b-43c2-92ab-8ba7d6555075.jpg" alt="Çalışma 5" data-caption="Grup tartışma ve fikir geliştirme">
+                    <img class="thumb" src="assets/a49b9f47-2e1c-4f54-8c5b-1a5ce39e0119.jpg" alt="Çalışma 6" data-caption="Deney ve prototip çalışması">
+                    <img class="thumb" src="assets/a4c32159-5581-4720-bd63-2f5388314c76.jpg" alt="Çalışma 7" data-caption="Etkinlikten detay kare">
+                </div>
                 <div class="desc" aria-hidden="true"></div>
             </article>
         </section>
     </main>
+    <!-- lightbox overlay -->
+    <div class="lb-overlay" role="dialog" aria-hidden="true">
+        <div class="lb">
+            <button class="lb-close" aria-label="Kapat">✕</button>
+            <div class="lb-nav">
+                <button class="lb-prev" aria-label="Önceki">‹</button>
+                <button class="lb-next" aria-label="Sonraki">›</button>
+            </div>
+            <div class="lb-meta" aria-hidden="true">1 / 1</div>
+            <img src="" alt="" />
+            <div class="lb-caption" role="status" aria-live="polite"></div>
+        </div>
+    </div>
 
     <footer>
-        <div>© 2026 Cinar Savas</div>
+        <div style="font-weight:700">Türk Telekom Şehit Murat Naiboğlu Anadolu Lisesi — Sultanbeyli</div>
+    <div style="margin-top:6px">© 2026 Çınar Savaş</div>
         <div style="margin-top:6px;font-size:12px;opacity:0.8">MEB projesi - içerikler daha sonra eklenecektir</div>
     </footer>
 
